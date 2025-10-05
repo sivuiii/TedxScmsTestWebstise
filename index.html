@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
     
@@ -17,6 +17,34 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="logo-line">
+                    <span class="logo-text">TEDx</span>
+                </div>
+                <div class="logo-line">
+                    <span class="logo-text">SCMS</span>
+                </div>
+                <div class="logo-line">
+                    <span class="logo-text">School of Engineering</span>
+                </div>
+                <div class="logo-line">
+                    <span class="logo-text">and Technology</span>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                    <div class="loading-percentage" id="loading-percentage">0%</div>
+                </div>
+                <div class="loading-text" id="loading-text">Preparing Experience<span class="loading-dots"></span></div>
+            </div>
+        </div>
+        <div class="grid-overlay"></div>
+    </div>
+
     <style>
   #dev-banner {
     position: fixed;
@@ -45,6 +73,7 @@
                 <a href="#hero" class="logo">TEDx<span class="logo-highlight">SCMS School of Engineering and Technology</span></a>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
+                    <li><a href="#theme">Theme</a></li>
                     <li><a href="#speakers">Speakers</a></li>
                     <li><a href="#schedule">Schedule</a></li>
                     <li><a href="#tickets">Tickets</a></li>
@@ -63,9 +92,11 @@
         <section id="hero" class="hero-section">
             <div class="hero-content">
                 <p class="hero-subtitle">x = independently organized TED event</p>
-                <h1 class="hero-title">TEDxSCMS</h1>
-                <h1 class="hero-title">School of Engineering</h1>
-                <h1 class="hero-title"> and Technology</h1>
+                <div class="logo-container">
+                    <h1 class="hero-title">TEDxSCMS</h1>
+                    <h1 class="hero-title">School of Engineering</h1>
+                    <h1 class="hero-title"> and Technology</h1>
+                </div>
 
                 <p class="hero-theme">Theme: Backfire Effect</p>
                 <p class="hero-date">January 13, 2026 | Ernakulam, Kerala</p>
@@ -92,52 +123,244 @@
             </div>
         </section>
 
+        <section id="theme" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Understanding Our Theme</h2>
+                <div class="theme-interactive">
+                    <div class="theme-content">
+                        <h3 class="theme-title">The Backfire Effect</h3>
+                        <div class="theme-description" id="theme-description">
+                            <p>Hover over the areas below to explore different aspects of the Backfire Effect and its connection to the TEDx experience.</p>
+                        </div>
+                    </div>
+                    <div class="interactive-grid">
+                        <div class="interactive-card" data-content="definition">
+                            <div class="card-icon">🧠</div>
+                            <h4>What is it?</h4>
+                            <p>Discover the definition</p>
+                        </div>
+                        <div class="interactive-card" data-content="psychology">
+                            <div class="card-icon">🔬</div>
+                            <h4>The Psychology</h4>
+                            <p>Explore the science</p>
+                        </div>
+                        <div class="interactive-card" data-content="examples">
+                            <div class="card-icon">💡</div>
+                            <h4>Real Examples</h4>
+                            <p>See it in action</p>
+                        </div>
+                        <div class="interactive-card" data-content="tedx-relevance">
+                            <div class="card-icon">🎤</div>
+                            <h4>TEDx Connection</h4>
+                            <p>Why it matters here</p>
+                        </div>
+                        <div class="interactive-card" data-content="overcoming">
+                            <div class="card-icon">🚀</div>
+                            <h4>Breaking Through</h4>
+                            <p>How to overcome it</p>
+                        </div>
+                        <div class="interactive-card" data-content="future">
+                            <div class="card-icon">🌟</div>
+                            <h4>Future Impact</h4>
+                            <p>Building better discourse</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="speakers" class="content-section dark-bg">
             <div class="container">
                 <h2 class="section-title">Meet Our Speakers</h2>
                 <div class="speaker-grid">
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/1.png" alt="Speaker One">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="1">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/1.png" alt="Speaker One">
+                                <div class="speaker-info">
+                                    <h3>Dr. Sarah Johnson</h3>
+                                    <p>AI Ethics Researcher</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>Dr. Sarah Johnson</h3>
+                                    <p class="speaker-title">AI Ethics Researcher & Professor</p>
+                                    <p class="speaker-bio">Dr. Johnson is a leading expert in artificial intelligence ethics and responsible AI development. She has published over 50 papers on AI safety and works with tech companies to implement ethical AI practices.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🎓 PhD in Computer Science, MIT</div>
+                                        <div class="achievement">📚 Author of "Ethical AI Design"</div>
+                                        <div class="achievement">🏆 AI Ethics Excellence Award 2024</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "Breaking Through AI Bias: The Backfire Effect in Machine Learning"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/2.png" alt="Speaker Two">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="2">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/2.png" alt="Speaker Two">
+                                <div class="speaker-info">
+                                    <h3>Mark Rodriguez</h3>
+                                    <p>Innovation Strategist</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>Mark Rodriguez</h3>
+                                    <p class="speaker-title">Innovation Strategist & Entrepreneur</p>
+                                    <p class="speaker-bio">Mark is a serial entrepreneur who has founded three successful tech startups. He specializes in helping organizations overcome innovation resistance and embrace disruptive change.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🚀 Founded 3 successful startups</div>
+                                        <div class="achievement">💼 Innovation Consultant for Fortune 500</div>
+                                        <div class="achievement">🌟 TEDx Speaker (5+ talks)</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "Innovation Immunity: Why Good Ideas Get Rejected"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/3.png" alt="Speaker Three">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="3">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/3.png" alt="Speaker Three">
+                                <div class="speaker-info">
+                                    <h3>Dr. Priya Sharma</h3>
+                                    <p>Cognitive Psychologist</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>Dr. Priya Sharma</h3>
+                                    <p class="speaker-title">Cognitive Psychologist & Researcher</p>
+                                    <p class="speaker-bio">Dr. Sharma studies human decision-making and cognitive biases. Her research has been featured in Nature and Science, focusing on how people process contradictory information.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🧠 PhD in Cognitive Psychology, Stanford</div>
+                                        <div class="achievement">📖 100+ peer-reviewed publications</div>
+                                        <div class="achievement">🔬 Lead Researcher at Brain Institute</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "The Mind's Defense Mechanisms: Understanding Confirmation Bias"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/4.png" alt="Speaker One">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="4">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/4.png" alt="Speaker Four">
+                                <div class="speaker-info">
+                                    <h3>James Chen</h3>
+                                    <p>Communication Expert</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>James Chen</h3>
+                                    <p class="speaker-title">Communication Expert & Media Consultant</p>
+                                    <p class="speaker-bio">James helps leaders communicate complex ideas effectively. He has worked with CEOs, politicians, and scientists to craft messages that resonate and create positive change.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🎤 International Speaking Coach</div>
+                                        <div class="achievement">📺 Media Training for 500+ executives</div>
+                                        <div class="achievement">📘 Bestselling author on communication</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "Words That Heal: Communicating Across Divides"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/5.png" alt="Speaker One">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="5">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/5.png" alt="Speaker Five">
+                                <div class="speaker-info">
+                                    <h3>Lisa Thompson</h3>
+                                    <p>Social Impact Leader</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>Lisa Thompson</h3>
+                                    <p class="speaker-title">Social Impact Leader & Activist</p>
+                                    <p class="speaker-bio">Lisa has dedicated her career to social justice and community building. She founded multiple nonprofits and has been recognized for her work in bridging cultural divides.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🌍 Founded 3 successful nonprofits</div>
+                                        <div class="achievement">🏅 Social Justice Award recipient</div>
+                                        <div class="achievement">🤝 Community Bridge Builder</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "Building Bridges: Overcoming Social Echo Chambers"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="speaker-card animate-on-scroll">
-                        <img src="images/9.png" alt="Speaker One">
-                        <div class="speaker-info">
-                            <h3>Speaker X</h3>
-                            <p>XXX</p>
+                    <div class="speaker-flip-card animate-on-scroll" data-speaker="6">
+                        <div class="speaker-card-inner">
+                            <div class="speaker-card-front">
+                                <img src="images/9.png" alt="Speaker Six">
+                                <div class="speaker-info">
+                                    <h3>Prof. Michael Davis</h3>
+                                    <p>Education Innovator</p>
+                                </div>
+                                <div class="flip-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Click for details</span>
+                                </div>
+                            </div>
+                            <div class="speaker-card-back">
+                                <div class="speaker-details">
+                                    <h3>Prof. Michael Davis</h3>
+                                    <p class="speaker-title">Education Innovator & University Professor</p>
+                                    <p class="speaker-bio">Professor Davis revolutionizes education through evidence-based teaching methods. His work focuses on critical thinking skills and helping students navigate information in the digital age.</p>
+                                    <div class="speaker-achievements">
+                                        <div class="achievement">🎓 Professor of Education, Harvard</div>
+                                        <div class="achievement">📚 Pioneer in critical thinking pedagogy</div>
+                                        <div class="achievement">🏆 Excellence in Teaching Award</div>
+                                    </div>
+                                    <div class="talk-topic">
+                                        <strong>Talk Topic:</strong> "Teaching Truth: Critical Thinking in the Information Age"
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Speaker Modal Overlay -->
+            <div id="speaker-modal" class="speaker-modal">
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close speaker details">&times;</button>
+                    <div id="modal-speaker-content"></div>
                 </div>
             </div>
         </section>
@@ -210,7 +433,66 @@
             <div class="container">
                 <h2 class="section-title">Join Us</h2>
                 <p>Be part of a day filled with brilliant speakers, thought-provoking ideas, and engaging conversations. Secure your spot today.</p>
-                <a href="https://www.townscript.com/e/tedxscms-school-of-engineering-and-technology-020023" class="btn btn-primary">Register Now</a>
+                
+                <div class="ticket-container">
+                    <button class="ticket" onclick="window.open('https://www.townscript.com/e/tedxscms-school-of-engineering-and-technology-020023', '_blank')" aria-label="Register for TEDxSCMS event">>
+                        <div class="ticket-left">
+                            <div class="ticket-header">
+                                <div class="event-logo">TEDx</div>
+                                <div class="event-type">CONFERENCE TICKET</div>
+                            </div>
+                            <div class="ticket-details">
+                                <h3 class="event-name">TEDxSCMS School of Engineering and Technology</h3>
+                                <div class="event-theme">Theme: Backfire Effect</div>
+                                <div class="ticket-info">
+                                    <div class="info-item">
+                                        <i class="far fa-calendar"></i>
+                                        <span>January 13, 2026</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="far fa-clock"></i>
+                                        <span>9:00 AM - 4:00 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>SCMS School of Engineering<br>Ernakulam, Kerala</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket-footer">
+                                <span class="ticket-price">Register Now</span>
+                                <span class="click-hint">Click to book →</span>
+                            </div>
+                        </div>
+                        <div class="ticket-divider">
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                            <div class="perforation"></div>
+                        </div>
+                        <div class="ticket-right">
+                            <div class="stub-header">
+                                <div class="event-logo-small">TEDx</div>
+                            </div>
+                            <div class="stub-content">
+                                <div class="stub-date">JAN<br><span>13</span></div>
+                                <div class="stub-year">2026</div>
+                                <div class="qr-placeholder">
+                                    <div class="qr-code">
+                                        <div class="qr-pattern"></div>
+                                    </div>
+                                </div>
+                                <div class="stub-id">#TEDx2026</div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
             </div>
         </section>
         
