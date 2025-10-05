@@ -214,6 +214,51 @@ const interactiveTheme = () => {
     }
 };
 
+// --- Enhanced Parallax Effect for About Section ---
+const parallaxEffect = () => {
+    const aboutSection = document.querySelector('.about-section-parallax');
+    const aboutContent = document.querySelector('.about-content');
+    
+    if (!aboutSection || !aboutContent) return;
+    
+    const updateParallax = () => {
+        const rect = aboutSection.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Only apply effect when section is in view
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+            // Calculate scroll progress through the section
+            const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (windowHeight + sectionHeight)));
+            
+            // Apply subtle transform to content for extra depth
+            const translateY = (scrollProgress - 0.5) * 20;
+            const opacity = 0.8 + (scrollProgress * 0.2);
+            
+            aboutContent.style.transform = `translateY(${translateY}px)`;
+            aboutContent.style.opacity = opacity;
+        }
+    };
+    
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const handleScroll = () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial call
+    updateParallax();
+};
+
 // --- Interactive Ticket Animation ---
 const ticketAnimation = () => {
     const ticket = document.querySelector('.ticket');
@@ -551,5 +596,6 @@ document.addEventListener('DOMContentLoaded', () => {
         addTearEffectStyles();
         ticketAnimation();
         speakerFlipCards();
+        parallaxEffect(); // Add parallax effect
     }, 4500); // Start after elegant loading screen finishes
 });
