@@ -214,32 +214,89 @@ const interactiveTheme = () => {
     }
 };
 
-// --- Enhanced Parallax Effect for About Section ---
+// --- Enhanced Parallax Effect for About and Speakers Sections ---
 const parallaxEffect = () => {
     const aboutSection = document.querySelector('.about-section-parallax');
     const aboutContent = document.querySelector('.about-content');
+    const speakersSection = document.querySelector('.speakers-section-parallax');
+    const speakersContainer = document.querySelector('.speakers-section-parallax .container');
     
-    if (!aboutSection || !aboutContent) return;
-    
-    const updateParallax = () => {
-        const rect = aboutSection.getBoundingClientRect();
-        const sectionTop = rect.top;
-        const sectionHeight = rect.height;
-        const windowHeight = window.innerHeight;
-        
-        // Only apply effect when section is in view
-        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
-            // Calculate scroll progress through the section
-            const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (windowHeight + sectionHeight)));
-            
-            // Apply subtle transform to content for extra depth
-            const translateY = (scrollProgress - 0.5) * 20;
-            const opacity = 0.8 + (scrollProgress * 0.2);
-            
-            aboutContent.style.transform = `translateY(${translateY}px)`;
-            aboutContent.style.opacity = opacity;
+    // Add staggered entrance animation for speaker cards
+    const initSpeakerAnimations = () => {
+        if (speakersSection) {
+            const speakerCards = speakersSection.querySelectorAll('.speaker-flip-card');
+            speakerCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            });
         }
     };
+    
+    const updateParallax = () => {
+        // About section parallax
+        if (aboutSection && aboutContent) {
+            const rect = aboutSection.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionHeight = rect.height;
+            const windowHeight = window.innerHeight;
+            
+            // Only apply effect when section is in view
+            if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+                // Calculate scroll progress through the section
+                const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (windowHeight + sectionHeight)));
+                
+                // Apply subtle transform to content for extra depth
+                const translateY = (scrollProgress - 0.5) * 20;
+                const opacity = 0.8 + (scrollProgress * 0.2);
+                
+                aboutContent.style.transform = `translateY(${translateY}px)`;
+                aboutContent.style.opacity = opacity;
+            }
+        }
+        
+        // Speakers section parallax
+        if (speakersSection && speakersContainer) {
+            const rect = speakersSection.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionHeight = rect.height;
+            const windowHeight = window.innerHeight;
+            
+            // Trigger entrance animation when section comes into view
+            if (sectionTop < windowHeight * 0.8) {
+                const speakerCards = speakersSection.querySelectorAll('.speaker-flip-card');
+                speakerCards.forEach((card) => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }
+            
+            // Only apply effect when section is in view
+            if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+                // Calculate scroll progress through the section
+                const scrollProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / (windowHeight + sectionHeight)));
+                
+                // Apply subtle transform to speakers for depth effect
+                const translateY = (scrollProgress - 0.5) * 15;
+                const speakerCards = speakersSection.querySelectorAll('.speaker-flip-card');
+                
+                speakerCards.forEach((card, index) => {
+                    const cardOffset = translateY + (index % 2 === 0 ? 5 : -5); // Alternate offset for visual interest
+                    const currentTransform = card.style.transform;
+                    if (currentTransform.includes('translateY(0)')) {
+                        card.style.transform = `translateY(${cardOffset}px)`;
+                    }
+                });
+                
+                // Adjust container opacity
+                const opacity = 0.9 + (scrollProgress * 0.1);
+                speakersContainer.style.opacity = opacity;
+            }
+        }
+    };
+    
+    // Initialize animations
+    initSpeakerAnimations();
     
     // Throttle scroll events for better performance
     let ticking = false;

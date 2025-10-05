@@ -1064,7 +1064,216 @@ p {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-/* --- Speakers Section --- */
+/* --- Speakers Section with Parallax --- */
+.speakers-section-parallax {
+  position: relative;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.3)), url('../images/venue.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Dark overlay for better card visibility */
+.speakers-background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(18, 18, 18, 0.9) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* Animated background pattern */
+.speakers-background-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(230, 43, 30, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(230, 43, 30, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(230, 43, 30, 0.04) 0%, transparent 50%);
+  animation: floatingParticles 20s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatingParticles {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-20px) rotate(1deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
+    opacity: 0.4;
+  }
+}
+
+.speakers-content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.speakers-section-parallax .section-title {
+  color: var(--color-primary-accent);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 3;
+}
+
+.speakers-section-parallax .container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Enhanced speaker cards for parallax section */
+.speakers-section-parallax .speaker-flip-card {
+  background: rgba(18, 18, 18, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 15px;
+  border: 1px solid rgba(230, 43, 30, 0.1);
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.speakers-section-parallax .speaker-flip-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(230, 43, 30, 0.05) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.speakers-section-parallax .speaker-flip-card:hover::before {
+  opacity: 1;
+  animation: shimmerEffect 0.6s ease;
+}
+
+@keyframes shimmerEffect {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.speakers-section-parallax .speaker-flip-card:hover {
+  border-color: rgba(230, 43, 30, 0.4);
+  box-shadow: 
+    0 20px 40px rgba(230, 43, 30, 0.2),
+    inset 0 0 20px rgba(230, 43, 30, 0.1);
+  transform: translateY(-10px) scale(1.02);
+}
+
+.speakers-section-parallax .speaker-card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.speakers-section-parallax .speaker-card-front {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.speakers-section-parallax .speaker-card-back {
+  background: linear-gradient(135deg, rgba(230, 43, 30, 0.95) 0%, rgba(196, 30, 58, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Scroll indicator for speakers section */
+.speakers-section-parallax::after {
+  content: '';
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(230, 43, 30, 0.6);
+  border-radius: 15px;
+  background: transparent;
+  z-index: 3;
+}
+
+.speakers-section-parallax::before {
+  content: '';
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary-accent);
+  border-radius: 50%;
+  animation: scrollBounce 2s infinite;
+  z-index: 3;
+}
+
+/* Mobile optimizations for speakers parallax section */
+@media (max-width: 768px) {
+  .speakers-section-parallax {
+    background-attachment: scroll; /* Better performance on mobile */
+    min-height: auto;
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .speakers-content-wrapper {
+    min-height: auto;
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .speakers-section-parallax::after,
+  .speakers-section-parallax::before {
+    display: none; /* Hide scroll indicator on mobile */
+  }
+  
+  .speakers-section-parallax .speaker-flip-card {
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid rgba(230, 43, 30, 0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .speakers-section-parallax {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .speakers-content-wrapper {
+    padding: var(--spacing-md) 0;
+  }
+}
+
+/* --- Original Speakers Section Styles (Updated) --- */
 .speaker-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
