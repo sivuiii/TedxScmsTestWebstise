@@ -852,9 +852,32 @@ p {
 }
 
 .highlight-icon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-md);
+  background: rgba(230, 43, 30, 0.1);
+  border-radius: 50%;
+  transition: all var(--transition-speed) ease;
+}
+
+.highlight-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--color-primary-accent);
+  transition: all var(--transition-speed) ease;
+}
+
+.highlight-item:hover .highlight-icon {
+  background: rgba(230, 43, 30, 0.2);
+  transform: scale(1.1);
+}
+
+.highlight-item:hover .highlight-icon svg {
+  stroke: #FFFFFF;
+  transform: scale(1.1);
 }
 
 .highlight-item h3 {
@@ -1027,13 +1050,32 @@ p {
 }
 
 .card-icon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--spacing-md);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
   transition: transform var(--transition-speed) ease;
 }
 
+.card-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: #FFFFFF;
+  transition: all var(--transition-speed) ease;
+}
+
 .interactive-card:hover .card-icon {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.2) rotate(10deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.interactive-card:hover .card-icon svg {
+  stroke: var(--color-primary-accent);
+  transform: scale(1.1);
 }
 
 .interactive-card h4 {
@@ -1429,6 +1471,17 @@ p {
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   padding-left: 10px;
   opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.achievement svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-primary-accent);
+  fill: none;
+  flex-shrink: 0;
 }
 
 .talk-topic {
