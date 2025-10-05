@@ -59,10 +59,47 @@ const scrollAnimation = () => {
 const mobileNav = () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-links a');
+
+    if (!hamburger || !navLinks) return;
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('is-active');
         navLinks.classList.toggle('is-active');
+        
+        // Prevent scrolling when menu is open
+        if (navLinks.classList.contains('is-active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu when clicking on nav links
+    navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('is-active');
+            navLinks.classList.remove('is-active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            hamburger.classList.remove('is-active');
+            navLinks.classList.remove('is-active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('is-active')) {
+            hamburger.classList.remove('is-active');
+            navLinks.classList.remove('is-active');
+            document.body.style.overflow = '';
+        }
     });
 };
 
@@ -100,34 +137,71 @@ const interactiveTheme = () => {
 
     const defaultContent = {
         title: "Explore the Backfire Effect",
-        content: "Hover over the cards below to discover different aspects of this fascinating cognitive bias and understand why it's our chosen theme for this TEDx event. Each perspective reveals how this psychological phenomenon shapes our daily interactions and why understanding it is crucial for meaningful dialogue."
+        content: "Hover over or tap the cards below to discover different aspects of this fascinating cognitive bias and understand why it's our chosen theme for this TEDx event. Each perspective reveals how this psychological phenomenon shapes our daily interactions and why understanding it is crucial for meaningful dialogue."
     };
 
     // Set default content
     updateThemeContent(defaultContent);
 
-    interactiveCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            const contentKey = card.getAttribute('data-content');
-            const content = themeContent[contentKey];
-            
-            // Remove active class from all cards
-            interactiveCards.forEach(c => c.classList.remove('active'));
-            // Add active class to current card
-            card.classList.add('active');
-            
-            updateThemeContent(content);
-        });
+    // Check if device supports touch
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-        card.addEventListener('mouseleave', () => {
-            // Small delay to prevent flickering when moving between cards
-            setTimeout(() => {
-                if (!document.querySelector('.interactive-card:hover')) {
+    interactiveCards.forEach(card => {
+        if (isTouchDevice) {
+            // For touch devices, use click/tap
+            card.addEventListener('click', () => {
+                const contentKey = card.getAttribute('data-content');
+                const content = themeContent[contentKey];
+                
+                // Remove active class from all cards
+                interactiveCards.forEach(c => c.classList.remove('active'));
+                
+                // Toggle active class on current card
+                if (card.classList.contains('active')) {
                     card.classList.remove('active');
                     updateThemeContent(defaultContent);
+                } else {
+                    card.classList.add('active');
+                    updateThemeContent(content);
                 }
-            }, 100);
+            });
+        } else {
+            // For desktop, use hover
+            card.addEventListener('mouseenter', () => {
+                const contentKey = card.getAttribute('data-content');
+                const content = themeContent[contentKey];
+                
+                // Remove active class from all cards
+                interactiveCards.forEach(c => c.classList.remove('active'));
+                // Add active class to current card
+                card.classList.add('active');
+                
+                updateThemeContent(content);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Small delay to prevent flickering when moving between cards
+                setTimeout(() => {
+                    if (!document.querySelector('.interactive-card:hover')) {
+                        card.classList.remove('active');
+                        updateThemeContent(defaultContent);
+                    }
+                }, 100);
+            });
+        }
+
+        // Add keyboard support
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
         });
+
+        // Make cards focusable
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-expanded', 'false');
     });
 
     function updateThemeContent(content) {
