@@ -490,85 +490,85 @@ const speakerFlipCards = () => {
     const modalContent = document.getElementById('modal-speaker-content');
     const modalClose = document.querySelector('.modal-close');
     
-    // Speaker data for modal display
+    // Speaker data for modal display - placeholder content until speakers are decided
     const speakerData = {
         1: {
-            name: "Dr. Sarah Johnson",
-            title: "AI Ethics Researcher & Professor",
-            bio: "Dr. Johnson is a leading expert in artificial intelligence ethics and responsible AI development. She has published over 50 papers on AI safety and works with tech companies to implement ethical AI practices. Her research focuses on the intersection of technology and human values, ensuring that AI systems are designed with fairness, transparency, and accountability in mind.",
+            name: "Speaker 1",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🎓 PhD in Computer Science, MIT",
-                "📚 Author of 'Ethical AI Design'",
-                "🏆 AI Ethics Excellence Award 2024",
-                "🔬 Lead Researcher at AI Safety Institute",
-                "🌍 Advisor to UN on AI Governance"
+                "� Inspiring speaker to be revealed",
+                "� Expert in their field",
+                "� Ideas worth spreading",
+                "� More details coming soon",
+                "� TEDx quality presentation"
             ],
-            talkTopic: "Breaking Through AI Bias: The Backfire Effect in Machine Learning"
+            talkTopic: "To be announced"
         },
         2: {
-            name: "Mark Rodriguez",
-            title: "Innovation Strategist & Entrepreneur",
-            bio: "Mark is a serial entrepreneur who has founded three successful tech startups valued at over $500M combined. He specializes in helping organizations overcome innovation resistance and embrace disruptive change. His work spans across multiple industries, from fintech to healthcare innovation.",
+            name: "Speaker 2",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🚀 Founded 3 successful startups ($500M+ value)",
-                "💼 Innovation Consultant for Fortune 500",
-                "🌟 TEDx Speaker (5+ talks)",
-                "📈 Venture Partner at Tech Ventures",
-                "🏅 Entrepreneur of the Year 2023"
+                "🎤 Inspiring speaker to be revealed",
+                "� Expert in their field",
+                "🌟 Ideas worth spreading",
+                "� More details coming soon",
+                "� TEDx quality presentation"
             ],
-            talkTopic: "Innovation Immunity: Why Good Ideas Get Rejected"
+            talkTopic: "To be announced"
         },
         3: {
-            name: "Dr. Priya Sharma",
-            title: "Cognitive Psychologist & Researcher",
-            bio: "Dr. Sharma studies human decision-making and cognitive biases with over 15 years of research experience. Her work has been featured in Nature, Science, and Psychology Review, focusing on how people process contradictory information and the mechanisms behind belief perseverance.",
+            name: "Speaker 3",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🧠 PhD in Cognitive Psychology, Stanford",
-                "📖 100+ peer-reviewed publications",
-                "🔬 Lead Researcher at Brain Institute",
-                "🎯 Expert in cognitive bias research",
-                "📺 Featured expert on BBC, CNN"
+                "🎤 Inspiring speaker to be revealed",
+                "� Expert in their field",
+                "🌟 Ideas worth spreading",
+                "📅 More details coming soon",
+                "🎯 TEDx quality presentation"
             ],
-            talkTopic: "The Mind's Defense Mechanisms: Understanding Confirmation Bias"
+            talkTopic: "To be announced"
         },
         4: {
-            name: "James Chen",
-            title: "Communication Expert & Media Consultant",
-            bio: "James helps leaders communicate complex ideas effectively and persuasively. He has worked with CEOs, politicians, and scientists to craft messages that resonate and create positive change. His expertise lies in bridging communication gaps and building understanding across diverse audiences.",
+            name: "Speaker 4",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🎤 International Speaking Coach",
-                "📺 Media Training for 500+ executives",
-                "📘 Bestselling author on communication",
-                "🌐 Crisis Communication Specialist",
-                "🏆 Communication Excellence Award"
+                "🎤 Inspiring speaker to be revealed",
+                "� Expert in their field",
+                "🌟 Ideas worth spreading",
+                "📅 More details coming soon",
+                "� TEDx quality presentation"
             ],
-            talkTopic: "Words That Heal: Communicating Across Divides"
+            talkTopic: "To be announced"
         },
         5: {
-            name: "Lisa Thompson",
-            title: "Social Impact Leader & Activist",
-            bio: "Lisa has dedicated her career to social justice and community building over the past 20 years. She founded multiple nonprofits that have impacted over 100,000 lives and has been recognized internationally for her work in bridging cultural and ideological divides.",
+            name: "Speaker 5",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🌍 Founded 3 successful nonprofits",
-                "🏅 Social Justice Award recipient",
-                "🤝 Community Bridge Builder",
-                "📊 Impacted 100,000+ lives",
-                "🗣️ UN Human Rights Speaker"
+                "� Inspiring speaker to be revealed",
+                "💡 Expert in their field",
+                "🌟 Ideas worth spreading",
+                "� More details coming soon",
+                "🎯 TEDx quality presentation"
             ],
-            talkTopic: "Building Bridges: Overcoming Social Echo Chambers"
+            talkTopic: "To be announced"
         },
         6: {
-            name: "Prof. Michael Davis",
-            title: "Education Innovator & University Professor",
-            bio: "Professor Davis revolutionizes education through evidence-based teaching methods at Harvard University. His work focuses on critical thinking skills and helping students navigate information in the digital age. He has transformed educational approaches in over 200 institutions worldwide.",
+            name: "Speaker 6",
+            title: "Details coming soon",
+            bio: "We're excited to announce our lineup of inspiring speakers soon. Stay tuned for updates on our amazing speakers who will share ideas worth spreading!",
             achievements: [
-                "🎓 Professor of Education, Harvard",
-                "📚 Pioneer in critical thinking pedagogy",
-                "🏆 Excellence in Teaching Award",
-                "🌐 Educational consultant to 200+ institutions",
-                "📖 Author of 5 educational bestsellers"
+                "� Inspiring speaker to be revealed",
+                "� Expert in their field",
+                "� Ideas worth spreading",
+                "📅 More details coming soon",
+                "🎯 TEDx quality presentation"
             ],
-            talkTopic: "Teaching Truth: Critical Thinking in the Information Age"
+            talkTopic: "To be announced"
         }
     };
     
